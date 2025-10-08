@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doadors', function (Blueprint $table) {
+        Schema::create('voluntarios', function (Blueprint $table) {
             $table->id();
+            $table->string('nome', 100);
+            $table->string('email', 100);
+            $table->string('senha', 255);
+            $table->enum('tipo_usuario', ['admin', 'colaborador']);
+            $table->foreignId('instituicao_id')->constrained('instituicoes');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doadors');
+        Schema::dropIfExists('voluntarios');
     }
 };

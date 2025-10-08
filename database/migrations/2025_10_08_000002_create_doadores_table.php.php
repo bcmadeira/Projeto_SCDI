@@ -13,8 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('instituicaos', function (Blueprint $table) {
+        Schema::create('doadores', function (Blueprint $table) {
             $table->id();
+            $table->string('nome', 150);
+            $table->string('cpf_cnpj', 20);
+            $table->string('telefone', 20);
+            $table->string('email', 100);
+            $table->string('tipo_doador', 50);
+            $table->string('endereco', 150);
+            $table->string('cidade', 100);
             $table->timestamps();
         });
     }
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instituicaos');
+        Schema::dropIfExists('doadores');
     }
 };

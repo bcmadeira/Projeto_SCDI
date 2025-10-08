@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('campanhas', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo', 150);
+            $table->string('descricao', 500)->nullable();
+            $table->date('data_inicio');
+            $table->date('data_fim');
+            $table->foreignId('instituicao_id')->constrained('instituicoes');
             $table->timestamps();
         });
     }
