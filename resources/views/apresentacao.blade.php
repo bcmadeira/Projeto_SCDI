@@ -10,10 +10,10 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-body rounded py-3">
-  <div class="container">
+  <div class="container-fluid ps-4">
     <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-      <img src="{{ asset('images/projeto.png') }}" alt="Logo" width="80" height="80 " class="float-start me-3">
-      <span class="font-weight-light fs-5 text-dark "> Sistema De Controle De Doações Institucional</span>
+      <img src="{{ asset('images/projeto.png') }}" alt="Logo" width="80" height="80 " class="float-start me-4">
+      <span class="font-weight-light fs-4 text-dark "> Sistema De Controle De Doações Institucional</span>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
