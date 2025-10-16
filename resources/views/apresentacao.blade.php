@@ -47,6 +47,12 @@
       style="width: 500px; height: 500px; display: block; margin: 0; padding: 0;">
   </div>
 
+  <div class="d-flex align-items-center ms-7" style="min-height: 450px; margin-left: -100px; width: 600px">
+    <div>
+      <h1>Seja Bem Vindo a SCDI</h1>
+      <p class="text-center">Sistema De Controle De Doações Institucional</p>
+    </div>
+  </div>
 
   <div class="p-0 m-0">
     <img src="{{ asset('images/projeto.png') }}" alt="Logo do projeto" class="img-fluid"
