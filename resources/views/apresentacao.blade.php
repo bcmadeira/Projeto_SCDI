@@ -8,6 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="icon" type="image/png" href="{{ asset('images/projeto.png') }}" sizes="186x186">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-0">
@@ -23,23 +25,36 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item mx-2">
-          <a class="nav-link active nav-hover" href="{{ url('/') }}">Início</a>
+      <ul class="navbar-nav ms-auto text-center">
+        <li class="nav-item mx-3">
+          <a class="nav-link active d-flex flex-column align-items-center" href="{{ url('/') }}">
+            <i class="bi bi-house fs-4 mb-1"></i>
+            <span>Início</span>
+          </a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link nav-hover" href="{{ url('/sobre') }}">Sobre</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/sobre') }}">
+            <i class="bi bi-info-circle fs-4 mb-1"></i>
+            <span>Sobre</span>
+          </a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link nav-hover" href="{{ url('/servicos') }}">Serviços</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/servicos') }}">
+            <i class="bi bi-gear fs-4 mb-1"></i>
+            <span>Serviços</span>
+          </a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link nav-hover" href="{{ url('/contato') }}">Contato</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/contato') }}">
+            <i class="bi bi-envelope fs-4 mb-1"></i>
+            <span>Contato</span>
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
 
 <div class="container-fluid d-flex justify-content-between align-items-start p-0 m-0" style="margin-top: -1px;">
   <div class="p-0 m-0">
@@ -49,8 +64,8 @@
 
   <div class="d-flex align-items-center ms-7" style="min-height: 450px; margin-left: -100px; width: 600px">
     <div>
-      <h1>Seja Bem Vindo a SCDI</h1>
-      <p class="text-center">Sistema De Controle De Doações Institucional</p>
+      <h1>Seja Bem-Vindo ao SCDI</h1>
+      <p class="text-center">Conectando solidariedade e transformação.</p>
     </div>
   </div>
 
