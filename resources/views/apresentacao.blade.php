@@ -9,14 +9,13 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="icon" type="image/png" href="{{ asset('images/projeto.png') }}" sizes="186x186">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
+   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-0">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-0 ">
   <div class="container-fluid ps-4">
     <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-      <img src="{{ asset('images/projeto.png') }}" alt="Logo" width="80" height="80" class="float-start me-4">
-      <span class="fw-light fs-4 text-dark">Sistema De Controle De Doações Institucional</span>
+      <span class="fw-light fs-4 text-dark shadow-sm p-3 mb-3 bg-body rounded hover-shadow">Sistema De Controle De Doações Institucional</span>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
