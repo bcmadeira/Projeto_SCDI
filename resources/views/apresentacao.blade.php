@@ -9,7 +9,7 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="icon" type="image/png" href="{{ asset('images/projeto.png') }}" sizes="186x186">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-0 ">
@@ -72,6 +72,17 @@
     <img src="{{ asset('images/projeto.png') }}" alt="Logo do projeto" class="img-fluid"
       style="width: 500px; height: 500px; display: block; margin: 0; padding: 0;">
   </div>
+</div>
+
+<figure>
+  <blockquote class="blockquote">
+    <p class="text-center">Conheça um pouco do nosso trabalho</p>
+  </blockquote>
+    <h6 class="text-center">O prazer de fazer o bem</h>
+</figure>
+
+<div class="container-fluid">
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
