@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-0 ">
             <div class="container-fluid ps-4">
@@ -57,6 +56,12 @@
             </div>
         </nav>
     </header>
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
     <main>
         <h2>Bem-vindo</h2>
@@ -111,6 +116,7 @@
             </div>
         </form>
     </main>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.js"></script>
 </body>

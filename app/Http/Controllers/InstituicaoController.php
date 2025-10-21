@@ -73,7 +73,7 @@ class InstituicaoController extends Controller
             'descricao' => $validated['descricao'] ?? null,
         ]);
 
-        //  Redireciona com mensagem
+        
         return redirect()->back()->with('success', 'Instituição cadastrada com sucesso!');
     }
 
