@@ -62,36 +62,34 @@
         <h2>Bem-vindo</h2>
         <p>Crie sua conta para receber doações</p>
 
-        <form>
+        <form action="{{ route('instituicoes.store') }}" method="POST">
+            @csrf
             <div class="row g-3 w-100">
                 <!-- Coluna 1 -->
                 <div class="col-md-4">
                     <label>Nome</label>
-                    <input type="text" class="form-control mb-3" placeholder="Digite seu nome">
+                    <input type="text" name="nome" class="form-control mb-3" placeholder="Digite seu nome">
 
                     <label>Telefone</label>
-                    <input type="text" class="form-control mb-3" placeholder="Digite seu telefone">
+                    <input type="text" name="telefone" class="form-control mb-3" placeholder="Digite seu telefone">
 
                     <label>Outro (Opcional)</label>
-                    <input type="text" class="form-control mb-3" placeholder="Outro contato">
+                    <input type="text" name="telefone2" class="form-control mb-3" placeholder="Outro contato">
 
                     <label>CPF</label>
-                    <input type="text" class="form-control mb-3" placeholder="Digite seu CPF">
+                    <input type="text" name="cpf" class="form-control mb-3" placeholder="Digite seu CPF">
 
                     <label>Descrição</label>
-                    <textarea class="form-control mb-3" rows="3" placeholder="Digite a descrição da sua instituição"></textarea>
+                    <textarea class="form-control mb-3" name="descricao" rows="3" placeholder="Digite a descrição da sua instituição"></textarea>
                 </div>
 
                 <!-- Coluna 2 -->
                 <div class="col-md-4">
                     <label>CNPJ</label>
-                    <input type="text" class="form-control mb-3" placeholder="Digite o CNPJ">
-
-                    <label>Nome</label>
-                    <input type="text" class="form-control mb-3" placeholder="Digite o nome">
+                    <input type="text" name="cnpj" class="form-control mb-3" placeholder="Digite o CNPJ">
 
                     <label>Ramo</label>
-                    <input type="text" class="form-control mb-3" placeholder="Digite o ramo">
+                    <input type="text" name="ramo" class="form-control mb-3" placeholder="Digite o ramo">
 
                     <div class="mt-4 text-center">
                         <button type="submit" class="btn btn-success">CADASTRAR</button>
@@ -101,14 +99,14 @@
                 <!-- Coluna 3 -->
                 <div class="col-md-4">
                     <label>Localização</label>
-                    <input type="text" class="form-control mb-2" placeholder="Digite o CEP">
-                    <input type="text" class="form-control mb-2" placeholder="Digite a rua">
-                    <input type="text" class="form-control mb-2" placeholder="Digite o número">
-                    <input type="text" class="form-control mb-2" placeholder="Digite a cidade">
-                    <input type="text" class="form-control mb-3" placeholder="Digite o complemento (Opcional)">
+                    <input type="text" name="cep" class="form-control mb-2" placeholder="Digite o CEP">
+                    <input type="text" name="rua" class="form-control mb-2" placeholder="Digite a rua">
+                    <input type="text" name="numero" class="form-control mb-2" placeholder="Digite o número">
+                    <input type="text" name="cidade" class="form-control mb-2" placeholder="Digite a cidade">
+                    <input type="text" name="complemento" class="form-control mb-3" placeholder="Digite o complemento (Opcional)">
 
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Digite o email da instituição">
+                    <input type="email" name="emailInstituicao" class="form-control" placeholder="Digite o email da instituição">
                 </div>
             </div>
         </form>

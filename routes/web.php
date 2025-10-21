@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InstituicaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::get('/instituicoes', function () {
     return view('./Instituicoes/instituicoes');
 });
+
+Route::post('/instituicoes', [InstituicaoController::class, 'store'])->name('instituicoes.store');
