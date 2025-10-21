@@ -58,7 +58,7 @@ class InstituicaoController extends Controller
         // Cria uma localização em base dos valores cidade e cep
         $localizacao = "{$validated['cidade']} - CEP: {$validated['cep']}";
 
-        // 💾 Salvando no banco
+        //  Salvando no banco
         Instituicao::create([
             'nome' => $validated['nome'],
             'cnpj' => $validated['cnpj'],
@@ -73,7 +73,7 @@ class InstituicaoController extends Controller
             'descricao' => $validated['descricao'] ?? null,
         ]);
 
-        // ✅ Redireciona com mensagem
+        //  Redireciona com mensagem
         return redirect()->back()->with('success', 'Instituição cadastrada com sucesso!');
     }
 
