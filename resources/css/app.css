@@ -1,47 +1,49 @@
 .hover-shadow {
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
 }
 
 .hover-shadow:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-3px);
-  background-color: #f8f9fa; /* opcional: leve destaque */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    background-color: #f8f9fa;
+    /* opcional: leve destaque */
 }
 
 .nav-hover {
-  position: relative;
-  transition: color 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
 .nav-hover::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: #0d6efd; 
-  transition: width 0.3s ease;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #0d6efd;
+    transition: width 0.3s ease;
 }
 
 .nav-hover:hover {
-  color: #0d6efd !important;
+    color: #0d6efd !important;
 }
 
 .nav-hover:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
 .hover-shadow {
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
 }
 
 .hover-shadow:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-3px);
-  background-color: #f8f9fa; /* opcional: leve destaque */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    background-color: #f8f9fa;
+    /* opcional: leve destaque */
 }
 
 .hover-shadow:hover {
