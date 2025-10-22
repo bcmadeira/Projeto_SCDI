@@ -84,8 +84,6 @@
                     <label>CPF</label>
                     <input type="text" name="cpf" class="form-control mb-3" placeholder="Digite seu CPF">
 
-                    <label>Descrição</label>
-                    <textarea class="form-control mb-3" name="descricao" rows="3" placeholder="Digite a descrição da sua instituição"></textarea>
                 </div>
 
                 <!-- Coluna 2 -->
@@ -95,6 +93,9 @@
 
                     <label>Ramo</label>
                     <input type="text" name="ramo" class="form-control mb-3" placeholder="Digite o ramo">
+
+                    <label>Descrição</label>
+                    <textarea class="form-control mb-3" name="descricao" rows="3" placeholder="Digite a descrição da sua instituição"></textarea>
 
                     <div class="mt-4 text-center">
                         <button type="submit" class="btn btn-success">CADASTRAR</button>
