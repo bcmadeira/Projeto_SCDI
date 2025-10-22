@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('apresentacao');
 });
+
+// Rota para teste do header
+Route::get('/teste', function () {
+    return view('teste');
+})->name('teste');

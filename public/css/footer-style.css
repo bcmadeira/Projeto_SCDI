@@ -1,0 +1,114 @@
+:root {
+    --primary-green: #8BC34A;
+    --secondary-green: #4CAF50;
+    --orange: #FF9800;
+    --yellow: #FDD835;
+    --teal: #26A69A;
+    --dark-green: #689F38;
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, #2c3e50, #34495e, #2c3e50) !important;
+    border-top: 3px solid;
+    border-image: linear-gradient(90deg, var(--teal), var(--primary-green), var(--orange)) 1;
+    color: #ffffff !important;
+}
+
+.footer p,
+.footer span,
+.footer .text-muted {
+    color: #ffffff !important;
+}
+
+.footer h5,
+.footer h6 {
+    color: #ffffff !important;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--primary-green));
+    color: white !important;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.social-icon:hover {
+    background: linear-gradient(135deg, var(--orange), var(--yellow));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.contact-icon {
+    color: var(--primary-green);
+    font-size: 16px;
+    width: 20px;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-green) !important;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+.footer h6 {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer h6::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-green), var(--teal));
+}
+
+/* Footer Responsive */
+@media (max-width: 768px) {
+    .footer .col-md-6.text-md-end {
+        text-align: center !important;
+        margin-top: 1rem;
+    }
+    
+    .social-links {
+        text-align: center;
+    }
+    
+    .footer-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+}
