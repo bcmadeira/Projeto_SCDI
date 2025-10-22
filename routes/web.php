@@ -19,7 +19,4 @@ Route::get('/campanhas/{id}', [CampanhaController::class, 'show'])->name('campan
 Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');
 Route::post('/campanhas', [CampanhaController::class, 'store'])->name('campanhas.store');
 
-Route::get('/relatorio', function () {
-    return view('Adm.relatorio'); // note que aqui é Adm.relatorio (sem .blade.php)
-});
-
+Route::get('/relatorio/{id}', [CampanhaController::class, 'relatorio'])->name('relatorio.campanha');
