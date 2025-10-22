@@ -1,18 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CampanhaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('apresentacao');
 });
+
+Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
+Route::get('/campanhas/{id}', [CampanhaController::class, 'show'])->name('campanhas.show');
+
+Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');
+Route::post('/campanhas', [CampanhaController::class, 'store'])->name('campanhas.store');
