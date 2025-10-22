@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
     --primary-green: #8BC34A;
     --secondary-green: #4CAF50;
@@ -141,6 +142,293 @@
     color: #ffffff !important;
     width: 100%;
     text-align: left;
+=======
+/* ========== CORE STYLES ========== */:root {
+
+:root {    --primary-green: #8BC34A;
+
+    --primary-green: #8BC34A;    --secondary-green: #4CAF50;
+
+    --secondary-green: #4CAF50;    --orange: #FF9800;
+
+    --orange: #FF9800;    --yellow: #FDD835;
+
+    --yellow: #FDD835;    --teal: #26A69A;
+
+    --teal: #26A69A;    --dark-green: #689F38;
+
+    --dark-green: #689F38;}
+
+}
+
+.navbar-brand {
+
+/* ========== NAVBAR STYLES ========== */    font-weight: bold;
+
+.navbar {    font-size: 1.5rem;
+
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--teal) 100%);    color: #ffffff !important;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+    padding: 1rem 0;    display: flex;
+
+}    align-items: center;
+
+    text-decoration: none !important;
+
+.navbar-logo {}
+
+    height: 40px;
+
+    width: auto;.navbar-brand:hover {
+
+}    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+.brand-text {}
+
+    font-size: 1.5rem;
+
+    font-weight: bold;.navbar-brand .logo-img {
+
+    color: white;    width: 45px;
+
+}    height: 45px;
+
+    margin-right: 12px;
+
+.navbar-nav .nav-link {    border-radius: 50%;
+
+    color: white !important;    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+
+    font-weight: 500;    transition: transform 0.3s ease;
+
+    transition: all 0.3s ease;}
+
+    margin: 0 0.25rem;
+
+    border-radius: 5px;.navbar-brand:hover .logo-img {
+
+    padding: 0.5rem 1rem !important;    transform: scale(1.1);
+
+}}
+
+
+
+.navbar-nav .nav-link:hover {.navbar-brand i {
+
+    background-color: rgba(255, 255, 255, 0.1);    color: var(--orange);
+
+    transform: translateY(-1px);    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+}}
+
+
+
+.navbar-nav .nav-link i {.navbar-nav .nav-link {
+
+    margin-right: 0.25rem;    font-weight: 500;
+
+}    padding: 0.5rem 1rem;
+
+    color: rgba(255, 255, 255, 0.9) !important;
+
+/* ========== DROPDOWN STYLES ========== */    transition: all 0.3s ease;
+
+.dropdown-menu {}
+
+    border: none;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);.navbar-nav .nav-link:hover {
+
+    border-radius: 10px;    color: var(--yellow) !important;
+
+    padding: 0.5rem 0;    background-color: rgba(255, 255, 255, 0.1);
+
+    margin-top: 0.5rem;    border-radius: 5px;
+
+}    transform: translateY(-2px);
+
+}
+
+.dropdown-item {
+
+    padding: 0.75rem 1.5rem;.navbar-nav .nav-link.active {
+
+    transition: all 0.3s ease;    color: var(--yellow) !important;
+
+}    background-color: rgba(255, 255, 255, 0.15);
+
+    border-radius: 5px;
+
+.dropdown-item:hover {}
+
+    background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
+
+    color: white;.dropdown-menu {
+
+    transform: translateX(5px);    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+
+}    border: none;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+
+.dropdown-item i {}
+
+    width: 20px;
+
+    text-align: center;.dropdown-item {
+
+}    color: #ffffff !important;
+
+    transition: all 0.3s ease;
+
+.dropdown-header {}
+
+    color: var(--dark-green);
+
+    font-weight: bold;.dropdown-item:hover {
+
+    font-size: 0.9rem;    background-color: var(--orange);
+
+    padding: 0.5rem 1.5rem;    color: #ffffff !important;
+
+}    transform: translateX(5px);
+
+}
+
+/* ========== NOTIFICATION STYLES ========== */
+
+.notification-badge {.dropdown-header {
+
+    position: absolute;    color: var(--yellow) !important;
+
+    top: -5px;    font-weight: bold;
+
+    right: -5px;}
+
+    font-size: 0.65rem;
+
+    border-radius: 50%;.user-dropdown {
+
+    min-width: 18px;    border-left: 1px solid rgba(255, 255, 255, 0.3);
+
+    height: 18px;    padding-left: 1rem;
+
+    display: flex;}
+
+    align-items: center;
+
+    justify-content: center;.notification-badge {
+
+}    position: absolute;
+
+    top: -5px;
+
+/* ========== ALERT STYLES ========== */    right: -5px;
+
+.alert-success {    font-size: 0.7rem;
+
+    background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));    background-color: var(--orange) !important;
+
+    border: none;    border: 2px solid #ffffff;
+
+    color: white;}
+
+    border-radius: 10px;
+
+}.navbar {
+
+    background: linear-gradient(135deg, var(--teal), var(--primary-green), var(--dark-green)) !important;
+
+.alert-danger {    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+    background: linear-gradient(45deg, #f44336, #e91e63);}
+
+    border: none;
+
+    color: white;.navbar-toggler {
+
+    border-radius: 10px;    border-color: rgba(255, 255, 255, 0.3);
+
+}}
+
+
+
+.alert-warning {.navbar-toggler-icon {
+
+    background: linear-gradient(45deg, var(--orange), var(--yellow));    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+    border: none;}
+
+    color: white;
+
+    border-radius: 10px;/* Alert customization */
+
+}.alert-success {
+
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+
+.alert-info {    border-color: var(--dark-green);
+
+    background: linear-gradient(45deg, var(--teal), #00bcd4);    color: #ffffff;
+
+    border: none;}
+
+    color: white;
+
+    border-radius: 10px;.alert-danger {
+
+}    background: linear-gradient(135deg, #f44336, #d32f2f);
+
+    border-color: #c62828;
+
+/* ========== RESPONSIVE STYLES ========== */    color: #ffffff;
+
+@media (max-width: 991.98px) {}
+
+    .navbar-nav .nav-link {
+
+        margin: 0.25rem 0;.alert-warning {
+
+        text-align: center;    background: linear-gradient(135deg, var(--orange), #f57c00);
+
+    }    border-color: #ef6c00;
+
+        color: #ffffff;
+
+    .dropdown-menu {}
+
+        margin-top: 0;
+
+        border-radius: 5px;.alert-info {
+
+    }    background: linear-gradient(135deg, var(--teal), #00796b);
+
+}    border-color: #00695c;
+
+    color: #ffffff;
+
+@media (max-width: 575.98px) {}
+
+    .navbar-logo {
+
+        height: 35px;/* Button in dropdown customization */
+
+    }.dropdown-item button {
+
+        background: none;
+
+    .brand-text {    border: none;
+
+        font-size: 1.25rem;    color: #ffffff !important;
+
+    }    width: 100%;
+
+}    text-align: left;
+>>>>>>> main
     padding: 0;
 }
 
