@@ -1,0 +1,211 @@
+/* ========== FOOTER STYLES ========== */:root {
+
+:root {    --primary-green: #8BC34A;
+
+    --primary-green: #8BC34A;    --secondary-green: #4CAF50;
+
+    --secondary-green: #4CAF50;    --orange: #FF9800;
+
+    --orange: #FF9800;    --yellow: #FDD835;
+
+    --yellow: #FDD835;    --teal: #26A69A;
+
+    --teal: #26A69A;    --dark-green: #689F38;
+
+    --dark-green: #689F38;}
+
+}
+
+/* Footer Styles */
+
+.footer {.footer {
+
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);    background: linear-gradient(135deg, #2c3e50, #34495e, #2c3e50) !important;
+
+    margin-top: auto;    border-top: 3px solid;
+
+}    border-image: linear-gradient(90deg, var(--teal), var(--primary-green), var(--orange)) 1;
+
+    color: #ffffff !important;
+
+.footer-logo {}
+
+    height: 50px;
+
+    width: auto;.footer p,
+
+}.footer span,
+
+.footer .text-muted {
+
+.footer-links li {    color: #ffffff !important;
+
+    margin-bottom: 0.5rem;}
+
+}
+
+.footer h5,
+
+.footer-links a {.footer h6 {
+
+    transition: all 0.3s ease;    color: #ffffff !important;
+
+    padding: 0.25rem 0;}
+
+    display: inline-block;
+
+}.footer-logo {
+
+    width: 40px;
+
+.footer-links a:hover {    height: 40px;
+
+    color: var(--primary-green) !important;    border-radius: 50%;
+
+    transform: translateX(5px);    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+}}
+
+
+
+/* ========== SOCIAL ICONS ========== */.social-icon {
+
+.social-links a {    width: 35px;
+
+    display: inline-flex;    height: 35px;
+
+    align-items: center;    line-height: 35px;
+
+    justify-content: center;    text-align: center;
+
+    width: 40px;    border-radius: 50%;
+
+    height: 40px;    background: linear-gradient(135deg, var(--teal), var(--primary-green));
+
+    border-radius: 50%;    color: white !important;
+
+    background: rgba(255, 255, 255, 0.1);    transition: all 0.3s ease;
+
+    transition: all 0.3s ease;    font-size: 14px;
+
+}    display: inline-block;
+
+}
+
+.social-links a:hover {
+
+    background: var(--primary-green);.social-icon:hover {
+
+    transform: translateY(-3px);    background: linear-gradient(135deg, var(--orange), var(--yellow));
+
+    box-shadow: 0 5px 15px rgba(139, 195, 74, 0.4);    transform: translateY(-3px);
+
+}    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+}
+
+.social-icon {
+
+    font-size: 1.1rem;.contact-icon {
+
+    color: white;    color: var(--primary-green);
+
+}    font-size: 16px;
+
+    width: 20px;
+
+/* ========== CONTACT INFO ========== */}
+
+.contact-icon {
+
+    color: var(--primary-green);.footer-links li {
+
+    font-size: 1.1rem;    margin-bottom: 8px;
+
+    width: 20px;}
+
+    text-align: center;
+
+}.footer-links a {
+
+    color: #ffffff !important;
+
+.contact-info .d-flex {    text-decoration: none;
+
+    transition: all 0.3s ease;    transition: all 0.3s ease;
+
+}}
+
+
+
+.contact-info .d-flex:hover {.footer-links a:hover {
+
+    transform: translateX(5px);    color: var(--primary-green) !important;
+
+}    transform: translateX(5px);
+
+    transition: all 0.3s ease;
+
+.contact-info .d-flex:hover .contact-icon {}
+
+    color: var(--yellow);
+
+}.footer h6 {
+
+    position: relative;
+
+/* ========== RESPONSIVE STYLES ========== */    padding-bottom: 10px;
+
+@media (max-width: 767.98px) {}
+
+    .footer-logo {
+
+        height: 40px;.footer h6::after {
+
+    }    content: '';
+
+        position: absolute;
+
+    .social-links a {    bottom: 0;
+
+        width: 35px;    left: 0;
+
+        height: 35px;    width: 30px;
+
+        margin: 0.25rem;    height: 2px;
+
+    }    background: linear-gradient(90deg, var(--primary-green), var(--teal));
+
+    }
+
+    .social-icon {
+
+        font-size: 1rem;/* Footer Responsive */
+
+    }@media (max-width: 768px) {
+
+        .footer .col-md-6.text-md-end {
+
+    .contact-info .d-flex {        text-align: center !important;
+
+        margin-bottom: 1rem;        margin-top: 1rem;
+
+    }    }
+
+}    
+    .social-links {
+        text-align: center;
+    }
+    
+    .footer-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+}
