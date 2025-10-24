@@ -1,8 +1,6 @@
 
 
 
-
-@section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -10,10 +8,10 @@
                 <div class="card-header bg-primary text-white">
                     <h3 class="card-title">
                         <i class="fas fa-dashboard"></i>
-                        DASHBOARD DA CAMPANHA - ADMINISTRAÇÃO
+                        DASHBOARD DA CAMPANHA
                     </h3>
                     <div class="card-tools">
-                        <a href="{{ route('adm.relatorios.index') }}" class="btn btn-light btn-sm">
+                        <a href="{{ route('relatorios.index') }}" class="btn btn-light btn-sm">
                             <i class="fas fa-arrow-left"></i> Voltar
                         </a>
                     </div>
@@ -96,14 +94,12 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    @php
-                                        $estaAtiva = \Carbon\Carbon::parse($campanha->data_fim) > now();
-                                    @endphp
-                                    <div class="info-box {{ $estaAtiva ? 'bg-warning' : 'bg-secondary' }} text-white">
+                                    <div class="info-box
+                                        {{ $campanha->data_fim < now() ? 'bg-secondary' : 'bg-warning' }} text-white">
                                         <div class="info-box-content">
                                             <span class="info-box-text">Status</span>
                                             <span class="info-box-number">
-                                                {{ $estaAtiva ? 'Em Andamento' : 'Finalizado' }}
+                                                {{ $campanha->data_fim < now() ? 'Finalizado' : 'Em Andamento' }}
                                             </span>
                                         </div>
                                     </div>
@@ -184,4 +180,4 @@
         </div>
     </div>
 </div>
-@endsection
+

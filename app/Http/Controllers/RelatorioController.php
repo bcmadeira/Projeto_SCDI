@@ -11,43 +11,56 @@ use Carbon\Carbon;
 
 class RelatorioController extends Controller
 {
-   public function index()
-{
-    $campanhas = Campanha::with(['instituicao', 'doacoes.doador'])->get();
-    $instituicoes = Instituicao::all(); // Carrega todas as instituições para o filtro
+    /**
+     * Exibe todas as campanhas com filtro opcional.
+     */
+    public function index()
+    {
+        $campanhas = Campanha::with(['instituicao', 'doacoes.doador'])->get();
+        $instituicoes = Instituicao::all(); // Para filtros no front-end
 
-    return view('Adm.relatorio.index', compact('campanhas', 'instituicoes'));
-}
+        return view('Adm.relatorio.index', compact('campanhas', 'instituicoes'));
+    }
+
+    /**
+     * Mostra os detalhes de uma campanha específica.
+     */
     public function show($id)
     {
         $campanha = Campanha::with(['instituicao', 'doacoes.doador'])->findOrFail($id);
-
         $dadosRelatorio = $this->gerarDadosRelatorio($campanha);
 
-        return view('Adm.relatorios.show', compact('campanha', 'dadosRelatorio'));
+        return view('Adm.relatorio.show', compact('campanha', 'dadosRelatorio'));
     }
 
+    /**
+     * Filtra campanhas por data e instituição.
+     */
     public function filtrar(Request $request)
     {
         $query = Campanha::with(['instituicao', 'doacoes.doador']);
 
-        if ($request->data_inicio) {
+        if ($request->filled('data_inicio')) {
             $query->where('data_inicio', '>=', $request->data_inicio);
         }
 
-        if ($request->data_fim) {
+        if ($request->filled('data_fim')) {
             $query->where('data_fim', '<=', $request->data_fim);
         }
 
-        if ($request->instituicao_id) {
+        if ($request->filled('instituicao_id')) {
             $query->where('instituicao_id', $request->instituicao_id);
         }
 
         $campanhas = $query->get();
+        $instituicoes = Instituicao::all();
 
-        return view('relatorios.index', compact('campanhas'));
+        return view('Adm.relatorio.index', compact('campanhas', 'instituicoes'));
     }
 
+    /**
+     * Gera os dados numéricos do relatório.
+     */
     private function gerarDadosRelatorio($campanha)
     {
         $totalArrecadado = $campanha->doacoes->sum('valor');
@@ -59,11 +72,11 @@ class RelatorioController extends Controller
         $diasDuracao = $dataInicio->diffInDays($dataFim);
 
         return [
-            'total_arrecadado' => $totalArrecadado,
-            'quantidade_doacoes' => $quantidadeDoacoes,
+            'total_arrecadado'    => $totalArrecadado,
+            'quantidade_doacoes'  => $quantidadeDoacoes,
             'quantidade_doadores' => $quantidadeDoadores,
-            'dias_duracao' => $diasDuracao,
-            'media_diaria' => $diasDuracao > 0 ? $totalArrecadado / $diasDuracao : 0
+            'dias_duracao'        => $diasDuracao,
+            'media_diaria'        => $diasDuracao > 0 ? $totalArrecadado / $diasDuracao : 0,
         ];
     }
 }
