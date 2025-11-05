@@ -10,7 +10,6 @@
 </head>
 
 <body style="margin: 0; padding: 0; overflow-x: hidden;">
-    <x-header />
 
     <div class="container mt-5">
         <div class="card shadow">
