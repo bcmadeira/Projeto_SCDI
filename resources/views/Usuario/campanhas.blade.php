@@ -11,7 +11,6 @@
 </head>
 
 <body style="margin: 0; padding: 0; overflow-x: hidden;">
-    <x-header />
 
     <div class="container mt-4">
         <h2 class="text-center mb-4">Campanhas</h2>
