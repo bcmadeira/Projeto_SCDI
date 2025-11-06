@@ -44,5 +44,5 @@ class CampanhaController extends Controller
         $campanha = Campanha::findOrFail($id);
         return view('Usuario.show', compact('campanha'));
     }
-    
+
 }

@@ -11,11 +11,10 @@ Route::get('/', function () {
     return view('apresentacao');
 });
 
-Route::get('/instituicoes', function () {
-    return view('./Instituicoes/instituicoes');
-});
 
-Route::post('/instituicoes', [InstituicaoController::class, 'store'])->name('instituicoes.store');
+Route::resource('instituicoes', InstituicaoController::class);
+
+
 Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
 Route::get('/campanhas/{id}', [CampanhaController::class, 'show'])->name('campanhas.show');
 
