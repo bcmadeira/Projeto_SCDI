@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Doações - SCDI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/relatorio.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Modals -->
+    <div id="modals-container"></div>
+
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="dashboard-title">Minhas Doações</h1>
+            <p class="text-muted m-0">Acompanhe o histórico de todas as suas contribuições</p>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Total de Doações</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">R$ 1.500,00</div>
+                <div class="stat-label">Total Doado</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Campanhas Apoiadas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Instituições Ajudadas</div>
+            </div>
+        </div>
+
+        <div class="filters-section">
+            <div class="filter-row">
+                <div class="form-group">
+                    <label>Data Inicial</label>
+                    <input type="date" class="form-control" id="dataInicio">
+                </div>
+                <div class="form-group">
+                    <label>Data Final</label>
+                    <input type="date" class="form-control" id="dataFim">
+                </div>
+                <div class="form-group">
+                    <label>Campanha</label>
+                    <select class="form-select" id="campanhaFilter">
+                        <option value="">Todas as Campanhas</option>
+                        <option value="1">Natal Solidário 2024</option>
+                        <option value="2">Agasalho do Bem</option>
+                        <option value="3">Alimentação Emergencial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select class="form-select" id="tipoFilter">
+                        <option value="">Todos os Tipos</option>
+                        <option value="dinheiro">Dinheiro</option>
+                        <option value="material">Material</option>
+                    </select>
+                </div>
+                <div class="form-group filter-btn-group">
+                    <button class="btn btn-primary" onclick="filtrarDoacoes()">Filtrar</button>
+                    <button class="btn btn-secondary" onclick="limparFiltros()">Limpar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-row">
+            <button class="btn btn-success" onclick="exportarPDF()">
+                <i class="bi bi-file-pdf"></i> Exportar PDF
+            </button>
+            <button class="btn btn-success" onclick="exportarExcel()">
+                <i class="bi bi-file-excel"></i> Exportar Excel
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Campanha</th>
+                        <th>Instituição</th>
+                        <th>Tipo</th>
+                        <th>Valor/Descrição</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaDoacoes">
+                    <tr>
+                        <td>15/01/2025</td>
+                        <td>Natal Solidário 2024</td>
+                        <td>ONG Esperança</td>
+                        <td><span class="badge-tipo badge-dinheiro">Dinheiro</span></td>
+                        <td>R$ 150,00</td>
+                        <td><span class="badge-status badge-confirmada">Confirmada</span></td>
+                        <td>
+                            <button class="btn-action" onclick="verComprovante(1)" title="Ver Comprovante">
+                                <i class="bi bi-file-text"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12/01/2025</td>
+                        <td>Agasalho do Bem</td>
+                        <td>Casa do Menor</td>
+                        <td><span class="badge-tipo badge-material">Material</span></td>
+                        <td>10 cobertores</td>
+                        <td><span class="badge-status badge-entregue">Entregue</span></td>
+                        <td>
+                            <button class="btn-action" onclick="verComprovante(2)" title="Ver Comprovante">
+                                <i class="bi bi-file-text"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10/01/2025</td>
+                        <td>Alimentação Emergencial</td>
+                        <td>Lar dos Idosos</td>
+                        <td><span class="badge-tipo badge-dinheiro">Dinheiro</span></td>
+                        <td>R$ 200,00</td>
+                        <td><span class="badge-status badge-confirmada">Confirmada</span></td>
+                        <td>
+                            <button class="btn-action" onclick="verComprovante(3)" title="Ver Comprovante">
+                                <i class="bi bi-file-text"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>08/01/2025</td>
+                        <td>Medicamentos Essenciais</td>
+                        <td>ONG Esperança</td>
+                        <td><span class="badge-tipo badge-material">Material</span></td>
+                        <td>Remédios diversos</td>
+                        <td><span class="badge-status badge-pendente">Pendente</span></td>
+                        <td>
+                            <button class="btn-action" onclick="verComprovante(4)" title="Ver Comprovante">
+                                <i class="bi bi-file-text"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>05/01/2025</td>
+                        <td>Natal Solidário 2024</td>
+                        <td>ONG Esperança</td>
+                        <td><span class="badge-tipo badge-dinheiro">Dinheiro</span></td>
+                        <td>R$ 100,00</td>
+                        <td><span class="badge-status badge-confirmada">Confirmada</span></td>
+                        <td>
+                            <button class="btn-action" onclick="verComprovante(5)" title="Ver Comprovante">
+                                <i class="bi bi-file-text"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalComprovante" class="modal-overlay" onclick="fecharModal(event, 'modalComprovante')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="bi bi-file-text"></i> Comprovante de Doação</h3>
+                <button class="modal-close" onclick="fecharModal(event, 'modalComprovante')">&times;</button>
+            </div>
+            <div>
+                <div class="comprovante-content">
+                    <p><strong>Protocolo:</strong> <span id="protocolo">DOA-2025-001</span></p>
+                    <p><strong>Data:</strong> <span id="dataDoacao">15/01/2025</span></p>
+                    <p><strong>Campanha:</strong> <span id="campanhaComprovante">Natal Solidário 2024</span></p>
+                    <p><strong>Instituição:</strong> <span id="instituicaoComprovante">ONG Esperança</span></p>
+                    <p><strong>Tipo:</strong> <span id="tipoComprovante">Dinheiro</span></p>
+                    <p><strong>Valor:</strong> <span id="valorComprovante">R$ 150,00</span></p>
+                    <p><strong>Status:</strong> <span id="statusComprovante">Confirmada</span></p>
+                </div>
+                <button class="btn btn-primary w-100 mt-3" onclick="baixarComprovante()">
+                    <i class="bi bi-download"></i> Baixar Comprovante
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/modals.js"></script>
+    <script>
+        function filtrarDoacoes() {
+            alert('Filtro aplicado com sucesso!');
+        }
+
+        function limparFiltros() {
+            document.getElementById('dataInicio').value = '';
+            document.getElementById('dataFim').value = '';
+            document.getElementById('campanhaFilter').value = '';
+            document.getElementById('tipoFilter').value = '';
+        }
+
+        function exportarPDF() {
+            alert('Relatório PDF em desenvolvimento!');
+        }
+
+        function exportarExcel() {
+            alert('Relatório Excel em desenvolvimento!');
+        }
+
+        function verComprovante(id) {
+            document.getElementById('modalComprovante').style.display = 'flex';
+        }
+
+        function baixarComprovante() {
+            alert('Download do comprovante iniciado!');
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/components-loader.js"></script>
+    <script src="../js/utils.js"></script>
+</body>
+</html>
