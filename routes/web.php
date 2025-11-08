@@ -12,7 +12,10 @@ Route::get('/', function () {
 });
 
 
-Route::resource('instituicoes', InstituicaoController::class);
+Route::resource('instituicoes', InstituicaoController::class)->parameters([
+    'instituicoes' => 'instituicao'
+]);
+
 
 
 Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
