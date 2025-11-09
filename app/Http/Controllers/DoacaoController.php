@@ -13,11 +13,13 @@ class DoacaoController extends Controller
 {
     public function create($id)
     {
-        $campanha = Campanha::findOrFail($id);
-        $instituicoes = Instituicao::all();
-        $doadores = Doador::all();
+        $campanha = \App\Models\Campanha::findOrFail($id);
+        $doadores = \App\Models\Doador::all();
 
-        return view('Usuario.doar', compact('campanha', 'instituicoes', 'doadores'));
+        // Puxa automaticamente a instituição associada à campanha
+        $instituicao = $campanha->instituicao;
+
+        return view('Usuario.doar', compact('campanha', 'instituicao', 'doadores'));
     }
 
     public function store(Request $request)

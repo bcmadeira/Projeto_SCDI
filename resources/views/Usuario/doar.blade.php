@@ -46,12 +46,8 @@
 
                     <div class="col-md-6">
                         <label class="form-label">Instituição</label>
-                        <select name="instituicao_id" class="form-select" required>
-                            <option value="">Selecione...</option>
-                            @foreach($instituicoes as $inst)
-                            <option value="{{ $inst->id }}">{{ $inst->nome }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control" value="{{ $instituicao->nome }}" readonly>
+                        <input type="hidden" name="instituicao_id" value="{{ $instituicao->id }}">
                     </div>
 
                     <div class="col-md-6">

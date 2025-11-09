@@ -19,7 +19,7 @@ class Campanha extends Model
 
     public function instituicao()
     {
-        return $this->belongsTo(Instituicao::class);
+        return $this->belongsTo(\App\Models\Instituicao::class);
     }
 
     public function doacoes()
