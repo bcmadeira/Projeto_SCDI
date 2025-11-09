@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +21,18 @@
                 <p><strong>Início:</strong> {{ \Carbon\Carbon::parse($campanha->data_inicio)->format('d/m/Y') }}</p>
                 <p><strong>Término:</strong> {{ \Carbon\Carbon::parse($campanha->data_fim)->format('d/m/Y') }}</p>
 
-                <a href="{{ route('campanhas.index') }}" class="btn btn-secondary mt-3">
-                    <i class="bi bi-arrow-left"></i> Voltar
-                </a>
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{{ route('campanhas.index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+
+                    <a href="{{ route('doacoes.create', ['campanha_id' => $campanha->id]) }}" class="btn btn-success">
+                        <i class="bi bi-heart-fill"></i> Fazer Doação
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
