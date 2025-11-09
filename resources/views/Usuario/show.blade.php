@@ -26,9 +26,7 @@
                         <i class="bi bi-arrow-left"></i> Voltar
                     </a>
 
-                    <a href="{{ route('doacoes.create', ['campanha_id' => $campanha->id]) }}" class="btn btn-success">
-                        <i class="bi bi-heart-fill"></i> Fazer Doação
-                    </a>
+                    <a href="{{ route('campanhas.doar', $campanha->id) }}" class="btn btn-success">Doar</a>
                 </div>
             </div>
         </div>

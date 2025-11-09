@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Doacao;
+use Illuminate\Http\Request;
 use App\Models\Campanha;
 use App\Models\Instituicao;
-use Illuminate\Http\Request;
+use App\Models\Doador;
+use App\Models\Doacao;
+use Carbon\Carbon;
 
 class DoacaoController extends Controller
 {
     public function create($id)
     {
         $campanha = Campanha::findOrFail($id);
-        $instituicao = $campanha->instituicao;
-        return view('Usuario.doar', compact('campanha', 'instituicao'));
+        $instituicoes = Instituicao::all();
+        $doadores = Doador::all();
+
+        return view('Usuario.doar', compact('campanha', 'instituicoes', 'doadores'));
     }
 
     public function store(Request $request)
@@ -22,25 +26,22 @@ class DoacaoController extends Controller
             'tipo_doacao' => 'required|string|max:100',
             'valor' => 'nullable|numeric|min:0',
             'quantidade' => 'nullable|integer|min:1',
-            'descricao' => 'nullable|string|max:500',
+            'descricao' => 'nullable|string',
             'instituicao_id' => 'required|exists:instituicoes,id',
-            'campanha_id' => 'nullable|exists:campanhas,id'
+            'doador_id' => 'required|exists:doadores,id',
         ]);
 
-        // Por enquanto, o doador será nulo (até ter login)
         Doacao::create([
             'tipo_doacao' => $request->tipo_doacao,
-            'valor' => $request->valor,
-            'quantidade' => $request->quantidade,
             'descricao' => $request->descricao,
-            'data_doacao' => now(),
+            'quantidade' => $request->quantidade,
+            'valor' => $request->valor,
+            'data_doacao' => Carbon::now(),
             'status' => 'ativa',
             'instituicao_id' => $request->instituicao_id,
-            'doador_id' => null,
+            'doador_id' => $request->doador_id,
         ]);
 
-        return redirect()
-            ->route('campanhas.index')
-            ->with('success', 'Doação registrada com sucesso!');
+        return redirect('/campanhas')->with('success', 'Doação realizada com sucesso!');
     }
 }
