@@ -3,6 +3,7 @@
 use App\Http\Controllers\InstituicaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CampanhaController;
+use App\Http\Controllers\DoacaoController;
 use App\Http\Controllers\RelatorioController;
 
 
@@ -17,16 +18,14 @@ Route::resource('instituicoes', InstituicaoController::class)->parameters([
 ]);
 
 
-Route::get('/doacoes/criar', [DoacaoController::class, 'create'])->name('doacoes.create');
-
-Route::get('/doacoes/{campanha_id}', [DoadorController::class, 'create'])->name('doacoes.create');
-Route::post('/doacoes', [DoadorController::class, 'store'])->name('doacoes.store');
 
 
 Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
 Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');
 Route::post('/campanhas', [CampanhaController::class, 'store'])->name('campanhas.store');
 Route::get('/campanhas/{id}', [CampanhaController::class, 'show'])->name('campanhas.show');
+Route::get('/campanhas/{id}/doar', [DoacaoController::class, 'create'])->name('doacoes.create');
+Route::post('/doacoes', [DoacaoController::class, 'store'])->name('doacoes.store');
 
 
 // Rotas de Relatórios
