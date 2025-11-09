@@ -24,4 +24,14 @@ class Instituicao extends Model
         'email',
         'descricao',
     ];
+
+    public function campanhas()
+    {
+        return $this->hasMany(Campanha::class);
+    }
+
+    public function doacoes()
+    {
+        return $this->hasMany(Doacao::class);
+    }
 }

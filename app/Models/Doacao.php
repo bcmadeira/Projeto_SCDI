@@ -9,14 +9,14 @@ class Doacao extends Model
     protected $table = 'doacoes';
 
     protected $fillable = [
-        'tipo_doacao', 'descricao', 'quantidade', 'valor',
-        'data_doacao', 'status', 'instituicao_id', 'doador_id'
-    ];
-
-    protected $dates = ['data_doacao'];
-
-    protected $casts = [
-        'valor' => 'decimal:2',
+        'tipo_doacao',
+        'descricao',
+        'quantidade',
+        'valor',
+        'data_doacao',
+        'status',
+        'instituicao_id',
+        'doador_id'
     ];
 
     public function instituicao()
@@ -27,5 +27,10 @@ class Doacao extends Model
     public function doador()
     {
         return $this->belongsTo(Doador::class);
+    }
+
+    public function campanha()
+    {
+        return $this->belongsTo(Campanha::class);
     }
 }

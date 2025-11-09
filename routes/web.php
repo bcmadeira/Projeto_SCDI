@@ -17,6 +17,11 @@ Route::resource('instituicoes', InstituicaoController::class)->parameters([
 ]);
 
 
+Route::get('/doacoes/criar', [DoacaoController::class, 'create'])->name('doacoes.create');
+
+Route::get('/doacoes/{campanha_id}', [DoadorController::class, 'create'])->name('doacoes.create');
+Route::post('/doacoes', [DoadorController::class, 'store'])->name('doacoes.store');
+
 
 Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
 Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');
