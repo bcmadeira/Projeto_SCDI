@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\Campanha;
 use App\Models\Instituicao;
@@ -10,12 +10,11 @@ class CampanhaController extends Controller
 {
     public function create()
     {
-<<<<<<< HEAD
         // Debug da sessão
         $userId = session('userId');
         $userType = session('userType');
         
-        \Log::info('Tentando criar campanha', [
+    Log::info('Tentando criar campanha', [
             'userId' => $userId,
             'userType' => $userType,
             'session_all' => session()->all()
@@ -29,10 +28,6 @@ class CampanhaController extends Controller
         // }
 
         return view('instituicao.criar-campanha');
-=======
-        $instituicoes = Instituicao::all();
-        return view('Adm.criarCampanhas', compact('instituicoes'));
->>>>>>> origin/main
     }
 
     public function store(Request $request)
@@ -42,14 +37,13 @@ class CampanhaController extends Controller
         // TEMPORÁRIO: Se não tiver sessão, pega a primeira instituição
         if (!$instituicaoId) {
             $instituicaoId = \App\Models\Instituicao::first()->id ?? 1;
-            \Log::warning('Usando instituição temporária: ' . $instituicaoId);
+            Log::warning('Usando instituição temporária: ' . $instituicaoId);
         }
 
         $validated = $request->validate([
             'titulo' => 'required|string|max:150',
             'descricao' => 'nullable|string|max:500',
             'data_inicio' => 'required|date',
-<<<<<<< HEAD
             'data_fim' => 'required|date|after_or_equal:data_inicio',
             'meta_valor' => 'nullable|numeric|min:0',
             'categoria' => 'nullable|string|max:50',
@@ -66,45 +60,15 @@ class CampanhaController extends Controller
             'status' => 'ativa',
         ]);
 
-        \Log::info('Campanha criada com sucesso', ['campanha_id' => $campanha->id]);
+    Log::info('Campanha criada com sucesso', ['campanha_id' => $campanha->id]);
 
         return redirect()->route('campanhas.minhas')->with('success', 'Campanha criada com sucesso!');
-=======
-            'data_fim' => 'required|date|after:data_inicio', // data_fim deve ser posterior
-            'instituicao_id' => 'required|exists:instituicoes,id', // instituição precisa existir
-        ], [
-            'titulo.required' => 'O título é obrigatório.',
-            'data_inicio.required' => 'A data de início é obrigatória.',
-            'data_fim.required' => 'A data de término é obrigatória.',
-            'data_fim.after' => 'A data de término deve ser posterior à data de início.',
-            'instituicao_id.required' => 'Selecione uma instituição.',
-            'instituicao_id.exists' => 'A instituição selecionada é inválida.',
-        ]);
-
-        Campanha::create([
-            'titulo' => $request->titulo,
-            'descricao' => $request->descricao,
-            'data_inicio' => $request->data_inicio,
-            'data_fim' => $request->data_fim,
-            'instituicao_id' => $request->instituicao_id,
-        ]);
-
-        // mensagem de sucesso + instrução para redirecionar
-        return redirect()
-            ->back()
-            ->with('success', 'Campanha criada com sucesso! Redirecionando...');
->>>>>>> origin/main
     }
 
     public function index()
     {
-<<<<<<< HEAD
         $campanhas = \App\Models\Campanha::with('instituicao')->get();
         return view('campanhas.lista', compact('campanhas'));
-=======
-        $campanhas = Campanha::all();
-        return view('Usuario.campanhas', compact('campanhas'));
->>>>>>> origin/main
     }
 
     public function show($id)
@@ -122,7 +86,7 @@ class CampanhaController extends Controller
         
         // TEMPORÁRIO: Se não houver sessão, mostra todas as campanhas
         if (!$instituicaoId) {
-            \Log::warning('Sem sessão - mostrando todas as campanhas');
+            Log::warning('Sem sessão - mostrando todas as campanhas');
             $campanhas = Campanha::with('instituicao')
                 ->orderBy('created_at', 'desc')
                 ->get();

@@ -1,41 +1,24 @@
 <?php
 
-<<<<<<< HEAD
-use App\Http\Controllers\InstituicaoController;
-use App\Http\Controllers\DoadorController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CampanhaController;
-use App\Http\Controllers\RelatorioController;
-use App\Http\Controllers\DoacaoController;
-
-// ============================================
-// ROTAS PÚBLICAS
-// ============================================
-
-// Página inicial - Tela de apresentação
-=======
-use App\Http\Controllers\Auth\DoadorAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     InstituicaoController,
+    DoadorController,
     CampanhaController,
     DoacaoController,
     HomeDoadorController,
-    RelatorioController
+    RelatorioController,
+    Auth\DoadorAuthController
 };
 
 // Página inicial
->>>>>>> origin/main
 Route::get('/', function () {
     return view('apresentacao');
 })->name('home');
-
-<<<<<<< HEAD
 // Página de boas-vindas (cadastro rápido)
 Route::get('/welcome', function () {
     return view('auth.cadastrar');
 })->name('welcome');
-
 Route::get('/cadastrar', function () {
     return view('auth.cadastrar');
 })->name('cadastrar');
@@ -71,15 +54,12 @@ Route::post('/instituicoes', [InstituicaoController::class, 'store'])->name('ins
 // ============================================
 // ROTAS DE CAMPANHAS
 // ============================================
-
 // Listagem e visualização (público/doador)
 Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
-
 // Criação e gerenciamento (instituições) - DEVE VIR ANTES DE {id}
 Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');
 Route::post('/campanhas', [CampanhaController::class, 'store'])->name('campanhas.store');
 Route::get('/minhas-campanhas', [CampanhaController::class, 'minhas'])->name('campanhas.minhas');
-
 // Visualização específica - DEVE VIR DEPOIS
 Route::get('/campanhas/{id}', [CampanhaController::class, 'show'])->name('campanhas.show');
 
@@ -109,7 +89,6 @@ Route::get('/doador/perfil', [DoadorController::class, 'perfil'])->name('doador.
 // ============================================
 // ROTAS DE RELATÓRIOS (Admin/Instituição)
 // ============================================
-=======
 // =====================================================================
 // ROTAS DE AUTENTICAÇÃO DO DOADOR (PÚBLICAS)
 // =====================================================================
@@ -125,8 +104,7 @@ Route::post('/logout-doador', [DoadorAuthController::class, 'logout'])->name('lo
 // =====================================================================
 // ROTAS VISÍVEIS SEM LOGIN (APENAS VISUALIZAÇÃO DE CAMPANHAS)
 // =====================================================================
-Route::get('/campanhas', [CampanhaController::class, 'index'])->name('campanhas.index');
-Route::get('/campanhas/{id}', [CampanhaController::class, 'show'])->name('campanhas.show');
+// (Já declaradas acima, não repetir)
 
 // =====================================================================
 // ROTAS QUE NECESSITAM DOADOR LOGADO (auth:doador)
@@ -135,7 +113,6 @@ Route::middleware('auth:doador')->group(function () {
 
     // Home do doador autenticado
     Route::get('/doador/home', [HomeDoadorController::class, 'index'])->name('doador.home');
->>>>>>> origin/main
 
     // Criar campanhas (se o doador/usuário puder criar)
     Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');

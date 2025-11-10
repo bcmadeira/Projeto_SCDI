@@ -42,45 +42,38 @@ class InstituicaoController extends Controller
             'descricao' => 'nullable|string|max:500',
             'senha' => 'required|string|min:3',
         ]);
+    // Endereço formatado
+    $endereco = $validated['endereco'] ?? (isset($validated['rua'])
+        ? ($validated['rua']
+        . (!empty($validated['numero']) ? ", {$validated['numero']}" : "")
+        . (!empty($validated['complemento']) ? " - {$validated['complemento']}" : "")
+        )
+        : ''
+    );
 
-<<<<<<< HEAD
-        //  Salvando no banco
-        $instituicao = Instituicao::create([
-=======
-        // Endereço formatado
-        $endereco = "{$validated['rua']}" .
-                    (!empty($validated['numero']) ? ", {$validated['numero']}" : "") .
-                    (!empty($validated['complemento']) ? " - {$validated['complemento']}" : "");
+    // Localização formatada
+    $localizacao = (isset($validated['cidade']) && isset($validated['cep']))
+        ? ("{$validated['cidade']} - CEP: {$validated['cep']}")
+        : '';
 
-        // Localização formatada
-        $localizacao = "{$validated['cidade']} - CEP: {$validated['cep']}";
+    $instituicao = Instituicao::create([
+        'nome' => $validated['nome'],
+        'email' => $validated['email'],
+        'cnpj' => $validated['cnpj'],
+        'telefone' => $validated['telefone'],
+        'endereco' => $endereco,
+        'cidade' => $validated['cidade'],
+        'estado' => $validated['estado'],
+        'cep' => $validated['cep'],
+        'descricao' => $validated['descricao'] ?? null,
+        'senha' => bcrypt($validated['senha']),
+        'tipo' => 'ong',
+        'ramo' => 'geral', // Valor padrão
+    ]);
 
-        // Salvar
-        Instituicao::create([
->>>>>>> origin/main
-            'nome' => $validated['nome'],
-            'email' => $validated['email'],
-            'cnpj' => $validated['cnpj'],
-            'telefone' => $validated['telefone'],
-            'endereco' => $validated['endereco'],
-            'cidade' => $validated['cidade'],
-            'estado' => $validated['estado'],
-            'cep' => $validated['cep'],
-            'descricao' => $validated['descricao'] ?? null,
-            'senha' => bcrypt($validated['senha']),
-            'tipo' => 'ong',
-            'ramo' => 'geral', // Valor padrão
-        ]);
-
-<<<<<<< HEAD
-        // Fazer login automático
-        session(['userType' => 'instituicao', 'userEmail' => $instituicao->email, 'userId' => $instituicao->id]);
-        
-        return redirect()->route('dashboard.instituicao')->with('success', 'Cadastro realizado com sucesso! Bem-vindo!');
-=======
-        // Redireciona para a lista
-        return redirect()->route('instituicoes.index')->with('success', 'Instituição cadastrada com sucesso!');
->>>>>>> origin/main
+    // Fazer login automático
+    session(['userType' => 'instituicao', 'userEmail' => $instituicao->email, 'userId' => $instituicao->id]);
+    return redirect()->route('dashboard.instituicao')->with('success', 'Cadastro realizado com sucesso! Bem-vindo!');
     }
 
     /**
