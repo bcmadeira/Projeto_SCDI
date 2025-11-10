@@ -1,16 +1,20 @@
+@extends('layouts.dashboard')
 
+@section('title', 'Detalhes da Campanha - SCDI')
+
+@section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     <h3 class="card-title">
-                        <i class="fas fa-dashboard"></i>
-                        DASHBOARD DA CAMPANHA
+                        <i class="bi bi-eye"></i>
+                        DETALHES DA CAMPANHA
                     </h3>
                     <div class="card-tools">
-                        <a href="{{ route('relatorios.index') }}" class="btn btn-light btn-sm">
-                            <i class="fas fa-arrow-left"></i> Voltar
+                        <a href="{{ route('adm.relatorios.index') }}" class="btn btn-light btn-sm">
+                            <i class="bi bi-arrow-left"></i> Voltar
                         </a>
                     </div>
                 </div>
@@ -178,4 +182,4 @@
         </div>
     </div>
 </div>
-
+@endsection

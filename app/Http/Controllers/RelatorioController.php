@@ -61,7 +61,7 @@ class RelatorioController extends Controller
     /**
      * Gera os dados numéricos do relatório.
      */
-    private function gerarDadosRelatorio($campanha)
+    public function gerarDadosRelatorio($campanha)
     {
         $totalArrecadado = $campanha->doacoes->sum('valor');
         $quantidadeDoacoes = $campanha->doacoes->count();
@@ -78,5 +78,16 @@ class RelatorioController extends Controller
             'dias_duracao'        => $diasDuracao,
             'media_diaria'        => $diasDuracao > 0 ? $totalArrecadado / $diasDuracao : 0,
         ];
+    }
+
+    /**
+     * Exporta relatório em PDF (por enquanto retorna view de impressão).
+     */
+    public function exportarPdf($id)
+    {
+        $campanha = Campanha::with(['instituicao', 'doacoes.doador'])->findOrFail($id);
+        $dadosRelatorio = $this->gerarDadosRelatorio($campanha);
+
+        return view('Adm.relatorio.pdf', compact('campanha', 'dadosRelatorio'));
     }
 }

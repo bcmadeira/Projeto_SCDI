@@ -14,6 +14,9 @@ class Campanha extends Model
         'descricao',
         'data_inicio',
         'data_fim',
+        'meta_valor',
+        'categoria',
+        'status',
         'instituicao_id'
     ];
 
