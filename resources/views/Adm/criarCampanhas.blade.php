@@ -4,23 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Sistema de controle De Doações Institucional</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="{{ asset('images/projeto.png') }}" sizes="186x186">
+    <title>Criação de Campanha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body style="margin: 0; padding: 0; overflow-x: hidden;">
-
-    <x-header />
-
     <div class="container mt-5">
         <h2 class="text-center mb-4">Criação de Campanha</h2>
 
         @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success text-center" id="success-alert">
+            {{ session('success') }}
+        </div>
+
+        <script>
+            setTimeout(() => {
+                window.location.href = "/campanhas";
+            }, 1000);
+        </script>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $erro)
+                <li>{{ $erro }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
         <form action="{{ route('campanhas.store') }}" method="POST">
@@ -47,13 +59,22 @@
                 </div>
             </div>
 
+
+            <div class="mb-3">
+                <label class="form-label">Instituição</label>
+                <select name="instituicao_id" class="form-select" required>
+                    <option value="">Selecione uma instituição</option>
+                    @foreach ($instituicoes as $instituicao)
+                    <option value="{{ $instituicao->id }}">{{ $instituicao->nome }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="text-end">
                 <button type="submit" class="btn btn-success">Concluir Campanha</button>
             </div>
         </form>
     </div>
-
 </body>
-
 
 </html>

@@ -8,30 +8,24 @@ use Illuminate\Http\Request;
 class InstituicaoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Lista todas as instituições
      */
     public function index()
     {
-        //
+        $instituicoes = Instituicao::all();
+        return view('instituicoes.index', compact('instituicoes'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Exibe o formulário de criação
      */
     public function create()
     {
-        //
+        return view('instituicoes.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Salva uma nova instituição no banco
      */
     public function store(Request $request)
     {
@@ -52,13 +46,15 @@ class InstituicaoController extends Controller
             'emailInstituicao' => 'required|email|max:100',
         ]);
 
-        //  Cria um endereço completo usando valores de rua, numero e complemento
-        $endereco = "{$validated['rua']}, {$validated['numero']} - {$validated['complemento']}";
+        // Endereço formatado
+        $endereco = "{$validated['rua']}" .
+                    (!empty($validated['numero']) ? ", {$validated['numero']}" : "") .
+                    (!empty($validated['complemento']) ? " - {$validated['complemento']}" : "");
 
-        // Cria uma localização em base dos valores cidade e cep
+        // Localização formatada
         $localizacao = "{$validated['cidade']} - CEP: {$validated['cep']}";
 
-        //  Salvando no banco
+        // Salvar
         Instituicao::create([
             'nome' => $validated['nome'],
             'cnpj' => $validated['cnpj'],
@@ -73,52 +69,16 @@ class InstituicaoController extends Controller
             'descricao' => $validated['descricao'] ?? null,
         ]);
 
-        
-        return redirect()->back()->with('success', 'Instituição cadastrada com sucesso!');
+        // Redireciona para a lista
+        return redirect()->route('instituicoes.index')->with('success', 'Instituição cadastrada com sucesso!');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Instituicao  $instituicao
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Instituicao $instituicao)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Instituicao  $instituicao
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Instituicao $instituicao)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Instituicao  $instituicao
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Instituicao $instituicao)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Instituicao  $instituicao
-     * @return \Illuminate\Http\Response
+     * Remove uma instituição
      */
     public function destroy(Instituicao $instituicao)
     {
-        //
+        $instituicao->delete();
+        return redirect()->route('instituicoes.index')->with('success', 'Instituição excluída com sucesso!');
     }
 }
