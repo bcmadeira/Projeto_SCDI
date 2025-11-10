@@ -20,16 +20,13 @@ class Campanha extends Model
         'instituicao_id'
     ];
 
-    protected $dates = ['data_inicio', 'data_fim'];
-
     public function instituicao()
     {
-        return $this->belongsTo(Instituicao::class);
+        return $this->belongsTo(\App\Models\Instituicao::class);
     }
 
     public function doacoes()
     {
-        return $this->hasMany(Doacao::class, 'instituicao_id', 'instituicao_id')
-                    ->whereBetween('data_doacao', [$this->data_inicio, $this->data_fim]);
+        return $this->hasMany(Doacao::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory; // <-- ADICIONE ESTA LINHA
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Instituicao extends Model
 {
@@ -27,4 +28,14 @@ class Instituicao extends Model
         'tipo',
         'descricao',
     ];
+
+    public function campanhas()
+    {
+        return $this->hasMany(Campanha::class);
+    }
+
+    public function doacoes()
+    {
+        return $this->hasMany(Doacao::class);
+    }
 }

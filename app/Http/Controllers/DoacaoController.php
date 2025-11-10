@@ -2,85 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Doacao;
 use Illuminate\Http\Request;
+use App\Models\Campanha;
+use App\Models\Instituicao;
+use App\Models\Doador;
+use App\Models\Doacao;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DoacaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function create($campanha_id)
     {
-        //
+        $campanha = Campanha::findOrFail($campanha_id);
+        $instituicao = $campanha->instituicao;
+        $doadorLogado = Auth::guard('doador')->user(); // pega o doador autenticado
+
+        return view('usuario.doar', compact('campanha', 'instituicao', 'doadorLogado'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'tipo_doacao' => 'required|string|max:100',
+            'valor' => 'nullable|numeric|min:0',
+            'quantidade' => 'nullable|integer|min:1',
+            'descricao' => 'nullable|string',
+            'instituicao_id' => 'required|exists:instituicoes,id',
+            'doador_id' => 'required|exists:doadores,id',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Doacao  $doacao
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Doacao $doacao)
-    {
-        //
-    }
+        Doacao::create([
+            'tipo_doacao' => $request->tipo_doacao,
+            'descricao' => $request->descricao,
+            'quantidade' => $request->quantidade,
+            'valor' => $request->valor,
+            'data_doacao' => Carbon::now(),
+            'status' => 'ativa',
+            'instituicao_id' => $request->instituicao_id,
+            'doador_id' => $request->doador_id,
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Doacao  $doacao
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Doacao $doacao)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Doacao  $doacao
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Doacao $doacao)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Doacao  $doacao
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Doacao $doacao)
-    {
-        //
+        return redirect('/campanhas')->with('success', 'Doação realizada com sucesso!');
     }
 
     /**
