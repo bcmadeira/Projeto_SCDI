@@ -86,20 +86,18 @@
                 @foreach($atividadesRecentes as $doacao)
                 <div class="activity-item">
                     <div class="activity-icon"
-                         style="background:
-                            @if($doacao->tipo_doacao == 'Dinheiro') #28a745
-                            @elseif($doacao->tipo_doacao == 'Alimentos') #ffc107
-                            @elseif($doacao->tipo_doacao == 'Roupas') #007bff
-                            @elseif($doacao->tipo_doacao == 'Medicamentos') #17a2b8
-                            @else #6c757d
-                            @endif;">
-                        <i class="bi
-                            @if($doacao->tipo_doacao == 'Dinheiro') bi-currency-dollar
-                            @elseif($doacao->tipo_doacao == 'Alimentos') bi-basket
-                            @elseif($doacao->tipo_doacao == 'Roupas') bi-bag
-                            @elseif($doacao->tipo_doacao == 'Medicamentos') bi-heart-pulse
-                            @else bi-gift
-                            @endif"></i>
+                         style="background: {{
+                            ($doacao->tipo_doacao == 'Dinheiro') ? '#28a745' :
+                            (($doacao->tipo_doacao == 'Alimentos') ? '#ffc107' :
+                            (($doacao->tipo_doacao == 'Roupas') ? '#007bff' :
+                            (($doacao->tipo_doacao == 'Medicamentos') ? '#17a2b8' : '#6c757d')))
+                        }};">
+                        <i class="bi {{
+                            ($doacao->tipo_doacao == 'Dinheiro') ? 'bi-currency-dollar' :
+                            (($doacao->tipo_doacao == 'Alimentos') ? 'bi-basket' :
+                            (($doacao->tipo_doacao == 'Roupas') ? 'bi-bag' :
+                            (($doacao->tipo_doacao == 'Medicamentos') ? 'bi-heart-pulse' : 'bi-gift')))
+                        }}"></i>
                     </div>
 
                     <div class="activity-content">
@@ -171,16 +169,9 @@
 
     {{-- Dados do backend para os gráficos --}}
     <script>
-        window.dadosCategorias = @json([
-            'labels' => $distribuicaoCategorias->pluck('tipo_doacao')->toArray(),
-            'valores' => $distribuicaoCategorias->pluck('total')->toArray()
-        ]);
-
-        window.dadosMensais = @json([
-            'labels' => $mesesLabels,
-            'valores' => $dadosMensais
-        ]);
+        window.dadosCategorias = @json(array('labels' => $distribuicaoCategorias->pluck('tipo_doacao')->toArray(), 'valores' => $distribuicaoCategorias->pluck('total')->toArray()));
+        window.dadosMensais = @json(array('labels' => $mesesLabels, 'valores' => $dadosMensais));
     </script>
-
+    <script src="{{ asset('js/dashboard-data.js') }}"></script>
     <script src="{{ asset('frontend/js/dashboard.js') }}"></script>
 @endpush
