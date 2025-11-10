@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\DoadorAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     InstituicaoController,
@@ -60,3 +61,16 @@ Route::prefix('adm')->name('adm.')->group(function () {
         Route::get('/exportar/{id}', [RelatorioController::class, 'exportarPdf'])->name('exportar');
     });
 });
+
+
+Route::get('/login-doador', [DoadorAuthController::class, 'showLoginForm'])->name('login.doador');
+Route::post('/login-doador', [DoadorAuthController::class, 'login'])->name('login.doador.submit');
+
+Route::get('/cadastro-doador', [DoadorAuthController::class, 'showRegisterForm'])->name('cadastro.doador');
+Route::post('/cadastro-doador', [DoadorAuthController::class, 'cadastrar'])->name('cadastro.doador.submit');
+
+Route::post('/logout-doador', [DoadorAuthController::class, 'logout'])->name('logout.doador');
+
+Route::get('/painel-doador', function () {
+    return view('painel_doador');
+})->middleware('auth:doador')->name('painel.doador');

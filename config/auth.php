@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'doador' => [
+            'driver' => 'session',
+            'provider' => 'doadores',
+        ],
     ],
 
     /*
@@ -65,10 +70,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'doadores' => [ // 👈 provider para o guard 'doador'
+            'driver' => 'eloquent',
+            'model' => App\Models\Doador::class,
+        ],
     ],
 
     /*

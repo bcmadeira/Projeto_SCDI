@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
-class Doador extends Model
+class Doador extends Authenticatable
 {
+    use HasFactory, Notifiable;
+
     protected $table = 'doadores';
 
     protected $fillable = [
@@ -13,13 +18,14 @@ class Doador extends Model
         'cpf_cnpj',
         'telefone',
         'email',
-        'tipo_doador',
+        'password',
         'endereco',
-        'cidade'
+        'cidade',
+        'tipo_doador'
     ];
 
-    public function doacoes()
-    {
-        return $this->hasMany(Doacao::class);
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }
