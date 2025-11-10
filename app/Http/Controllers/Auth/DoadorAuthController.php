@@ -49,15 +49,20 @@ class DoadorAuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (Auth::guard('doador')->attempt($credentials)) {
-            return redirect()->intended('/painel-doador');
+        if (Auth::guard('doador')->attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ])) {
+            return redirect()->route('doador.home'); 
         }
 
-        return back()->withErrors(['email' => 'E-mail ou senha incorretos.']);
+        return back()->withErrors(['email' => 'Email ou senha incorretos']);
     }
-
     public function logout()
     {
         Auth::guard('doador')->logout();
