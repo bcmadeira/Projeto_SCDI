@@ -8,18 +8,17 @@ use App\Models\Instituicao;
 use App\Models\Doador;
 use App\Models\Doacao;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DoacaoController extends Controller
 {
-    public function create($id)
+    public function create($campanha_id)
     {
-        $campanha = \App\Models\Campanha::findOrFail($id);
-        $doadores = \App\Models\Doador::all();
-
-        // Puxa automaticamente a instituição associada à campanha
+        $campanha = Campanha::findOrFail($campanha_id);
         $instituicao = $campanha->instituicao;
+        $doadorLogado = Auth::guard('doador')->user(); // pega o doador autenticado
 
-        return view('Usuario.doar', compact('campanha', 'instituicao', 'doadores'));
+        return view('usuario.doar', compact('campanha', 'instituicao', 'doadorLogado'));
     }
 
     public function store(Request $request)
