@@ -2,10 +2,6 @@
 
 @section('title', 'Dashboard - SCDI')
 
-@push('styles')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@endpush
-
 @section('content')
 <div class="main-container">
     <!-- Cabeçalho do Dashboard -->
@@ -30,7 +26,7 @@
             <div class="stat-label">Total de Doações</div>
             <div class="stat-change positive">+12% este mês</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-icon blue">
                 <i class="bi bi-people-fill"></i>
@@ -39,7 +35,7 @@
             <div class="stat-label">Doadores Ativos</div>
             <div class="stat-change positive">+8% este mês</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-icon orange">
                 <i class="bi bi-flag-fill"></i>
@@ -48,7 +44,7 @@
             <div class="stat-label">Campanhas Ativas</div>
             <div class="stat-change positive">+3 novas</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-icon purple">
                 <i class="bi bi-currency-dollar"></i>
@@ -68,7 +64,7 @@
             </h3>
             <canvas id="campanhasChart" width="400" height="200"></canvas>
         </div>
-        
+
         <div class="chart-container">
             <h3 class="chart-title">
                 <i class="bi bi-pie-chart"></i>
@@ -85,15 +81,27 @@
                 <i class="bi bi-clock-history"></i>
                 Atividades Recentes
             </h3>
-            
+
             @if($atividadesRecentes->count() > 0)
                 @foreach($atividadesRecentes as $doacao)
                 <div class="activity-item">
-                    {{-- @formatter:off --}}
-                    <div class="activity-icon" style="background: @if($doacao->tipo_doacao == 'Dinheiro') #28a745 @elseif($doacao->tipo_doacao == 'Alimentos') #ffc107 @elseif($doacao->tipo_doacao == 'Roupas') #007bff @elseif($doacao->tipo_doacao == 'Medicamentos') #17a2b8 @else #6c757d @endif;">
-                        <i class="bi bi-@if($doacao->tipo_doacao == 'Dinheiro') currency-dollar @elseif($doacao->tipo_doacao == 'Alimentos') basket @elseif($doacao->tipo_doacao == 'Roupas') bag @elseif($doacao->tipo_doacao == 'Medicamentos') heart-pulse @else gift @endif"></i>
+                    <div class="activity-icon"
+                         style="background:
+                            @if($doacao->tipo_doacao == 'Dinheiro') #28a745
+                            @elseif($doacao->tipo_doacao == 'Alimentos') #ffc107
+                            @elseif($doacao->tipo_doacao == 'Roupas') #007bff
+                            @elseif($doacao->tipo_doacao == 'Medicamentos') #17a2b8
+                            @else #6c757d
+                            @endif;">
+                        <i class="bi
+                            @if($doacao->tipo_doacao == 'Dinheiro') bi-currency-dollar
+                            @elseif($doacao->tipo_doacao == 'Alimentos') bi-basket
+                            @elseif($doacao->tipo_doacao == 'Roupas') bi-bag
+                            @elseif($doacao->tipo_doacao == 'Medicamentos') bi-heart-pulse
+                            @else bi-gift
+                            @endif"></i>
                     </div>
-                    {{-- @formatter:on --}}
+
                     <div class="activity-content">
                         <div class="activity-title">{{ $doacao->tipo_doacao }} - {{ $doacao->doador->nome ?? 'Anônimo' }}</div>
                         <div class="activity-time">
@@ -120,32 +128,32 @@
                 </div>
             @endif
         </div>
-        
+
         <div class="recent-activities">
             <h3 class="chart-title">
                 <i class="bi bi-lightning"></i>
                 Ações Rápidas
             </h3>
-            
+
             <div class="quick-actions">
                 <a href="{{ route('campanhas.create') }}" class="quick-action">
                     <i class="bi bi-plus-circle"></i>
                     <div class="quick-action-title">Nova Campanha</div>
                     <div class="quick-action-desc">Criar uma nova campanha</div>
                 </a>
-                
+
                 <a href="{{ route('campanhas.minhas') }}" class="quick-action">
                     <i class="bi bi-list-ul"></i>
                     <div class="quick-action-title">Minhas Campanhas</div>
                     <div class="quick-action-desc">Gerenciar campanhas</div>
                 </a>
-                
+
                 <a href="{{ route('adm.relatorios.index') }}" class="quick-action">
                     <i class="bi bi-graph-up"></i>
                     <div class="quick-action-title">Relatórios</div>
                     <div class="quick-action-desc">Ver estatísticas</div>
                 </a>
-                
+
                 <a href="#" class="quick-action" onclick="abrirConfiguracoes(event)">
                     <i class="bi bi-gear"></i>
                     <div class="quick-action-title">Configurações</div>
@@ -158,19 +166,21 @@
 @endsection
 
 @push('scripts')
-{{-- Dados do backend para os gráficos --}}
-<script>
-    // Dados reais do banco para o gráfico de categorias
-    window.dadosCategorias = @json([
-        'labels' => $distribuicaoCategorias->pluck('tipo_doacao')->toArray(),
-        'valores' => $distribuicaoCategorias->pluck('total')->toArray()
-    ]);
-    
-    // Dados reais do banco para o gráfico mensal
-    window.dadosMensais = @json([
-        'labels' => $mesesLabels,
-        'valores' => $dadosMensais
-    ]);
-</script>
-<script src="{{ asset('frontend/js/dashboard.js') }}"></script>
+    {{-- Carrega o Chart.js primeiro --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {{-- Dados do backend para os gráficos --}}
+    <script>
+        window.dadosCategorias = @json([
+            'labels' => $distribuicaoCategorias->pluck('tipo_doacao')->toArray(),
+            'valores' => $distribuicaoCategorias->pluck('total')->toArray()
+        ]);
+
+        window.dadosMensais = @json([
+            'labels' => $mesesLabels,
+            'valores' => $dadosMensais
+        ]);
+    </script>
+
+    <script src="{{ asset('frontend/js/dashboard.js') }}"></script>
 @endpush
