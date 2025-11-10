@@ -21,8 +21,11 @@ class Instituicao extends Model
         'localizacao',
         'endereco',
         'cidade',
+        'estado',
         'cep',
         'email',
+        'senha',
+        'tipo',
         'descricao',
     ];
 

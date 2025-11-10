@@ -24,29 +24,15 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto text-center">
-        <li class="nav-item mx-3">
-          <a class="nav-link active d-flex flex-column align-items-center" href="{{ url('/Projeto_SCDI/resources/views/apresentacao.blade.php') }}">
-            <i class="bi bi-house fs-4 mb-1"></i>
-            <span>Início</span>
+      <ul class="navbar-nav ms-auto text-center align-items-center">
+        <li class="nav-item mx-2">
+          <a class="btn btn-outline-success px-4" href="{{ route('login') }}">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Login
           </a>
         </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/sobre') }}">
-            <i class="bi bi-info-circle fs-4 mb-1"></i>
-            <span>Sobre</span>
-          </a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/servicos') }}">
-            <i class="bi bi-gear fs-4 mb-1"></i>
-            <span>Serviços</span>
-          </a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link d-flex flex-column align-items-center" href="{{ url('/contato') }}">
-            <i class="bi bi-envelope fs-4 mb-1"></i>
-            <span>Contato</span>
+        <li class="nav-item mx-2">
+          <a class="btn btn-success px-4" href="{{ route('cadastrar') }}">
+            <i class="bi bi-person-plus me-2"></i>Cadastrar-se
           </a>
         </li>
       </ul>

@@ -45,4 +45,19 @@ class DoacaoController extends Controller
 
         return redirect('/campanhas')->with('success', 'Doação realizada com sucesso!');
     }
+
+    /**
+     * Display the donations of the logged in donor.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function minhas()
+    {
+        // Buscar doações do banco de dados com relacionamentos
+        $doacoes = \App\Models\Doacao::with(['campanha.instituicao'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('doador.minhas-doacoes', compact('doacoes'));
+    }
 }

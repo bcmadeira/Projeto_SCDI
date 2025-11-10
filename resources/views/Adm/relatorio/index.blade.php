@@ -1,66 +1,65 @@
+﻿@extends('layouts.dashboard')
 
+@section('title', 'Relatórios - SCDI')
 
-
-<div class="container-fluid">
+@section('content')
+<div class="container-fluid mt-4">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="card-title">
-                        <i class="fas fa-chart-bar"></i>
+                    <h3 class="mb-0">
+                        <i class="bi bi-graph-up me-2"></i>
                         RELATÓRIOS DE CAMPANHAS - ADMINISTRAÇÃO
                     </h3>
-
-                    <!-- Filtros -->
-                    <div class="card-tools">
-                        <form action="{{ route('adm.relatorios.filtrar') }}" method="GET" class="form-inline">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="data_inicio" class="col-form-label">Data Início:</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="date" name="data_inicio" class="form-control form-control-sm"
-                                           value="{{ request('data_inicio') }}">
-                                </div>
-
-                                <div class="col-auto">
-                                    <label for="data_fim" class="col-form-label">Data Fim:</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="date" name="data_fim" class="form-control form-control-sm"
-                                           value="{{ request('data_fim') }}">
-                                </div>
-
-                                <div class="col-auto">
-                                    <select name="instituicao_id" class="form-control form-control-sm">
-                                        <option value="">Todas as Instituições</option>
-                                        @foreach($instituicoes as $instituicao)
-                                            <option value="{{ $instituicao->id }}"
-                                                {{ request('instituicao_id') == $instituicao->id ? 'selected' : '' }}>
-                                                {{ $instituicao->nome }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        <i class="fas fa-filter"></i> Filtrar
-                                    </button>
-                                    <a href="{{ route('adm.relatorios.index') }}" class="btn btn-secondary btn-sm">
-                                        <i class="fas fa-redo"></i> Limpar
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
 
                 <div class="card-body">
+                    <!-- Filtros -->
+                    <form action="{{ route('adm.relatorios.filtrar') }}" method="GET" class="mb-4">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-3">
+                                <label for="data_inicio" class="form-label">Data Início:</label>
+                                <input type="date" name="data_inicio" class="form-control" value="{{ request('data_inicio') }}">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="data_fim" class="form-label">Data Fim:</label>
+                                <input type="date" name="data_fim" class="form-control" value="{{ request('data_fim') }}">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="instituicao_id" class="form-label">Instituição:</label>
+                                <select name="instituicao_id" class="form-select">
+                                    <option value="">Todas as Instituições</option>
+                                    @foreach($instituicoes as $instituicao)
+                                        <option value="{{ $instituicao->id }}" {{ request('instituicao_id') == $instituicao->id ? 'selected' : '' }}>
+                                            {{ $instituicao->nome }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-funnel me-1"></i> Filtrar
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <a href="{{ route('adm.relatorios.index') }}" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-clockwise me-1"></i> Limpar
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
                     @if($campanhas->count() > 0)
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
-                                <thead class="thead-dark">
+                                <thead class="table-dark">
                                     <tr>
                                         <th>#</th>
                                         <th>Título</th>
@@ -77,8 +76,7 @@
                                 <tbody>
                                     @foreach($campanhas as $campanha)
                                         @php
-                                            $dados = app('App\Http\Controllers\Adm\RelatorioController')
-                                                    ->gerarDadosRelatorio($campanha);
+                                            $dados = app('App\Http\Controllers\RelatorioController')->gerarDadosRelatorio($campanha);
                                             $estaAtiva = \Carbon\Carbon::parse($campanha->data_fim) > now();
                                         @endphp
                                         <tr>
@@ -90,27 +88,25 @@
                                                 {{ \Carbon\Carbon::parse($campanha->data_fim)->format('d/m/Y') }}
                                             </td>
                                             <td class="text-center">{{ $dados['dias_duracao'] }} dias</td>
-                                            <td class="text-success font-weight-bold">
+                                            <td class="text-success fw-bold">
                                                 R$ {{ number_format($dados['total_arrecadado'], 2, ',', '.') }}
                                             </td>
                                             <td class="text-center">{{ $dados['quantidade_doacoes'] }}</td>
                                             <td class="text-center">{{ $dados['quantidade_doadores'] }}</td>
                                             <td class="text-center">
                                                 @if($estaAtiva)
-                                                    <span class="badge badge-success">Ativa</span>
+                                                    <span class="badge bg-success">Ativa</span>
                                                 @else
-                                                    <span class="badge badge-secondary">Finalizada</span>
+                                                    <span class="badge bg-secondary">Finalizada</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <a href="{{ route('adm.relatorios.show', $campanha->id) }}"
-                                                       class="btn btn-info btn-sm" title="Ver Detalhes">
-                                                        <i class="fas fa-eye"></i>
+                                                <div class="btn-group" role="group">
+                                                    <a href="{{ route('adm.relatorios.show', $campanha->id) }}" class="btn btn-info btn-sm" title="Ver Detalhes">
+                                                        <i class="bi bi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('adm.relatorios.exportar', $campanha->id) }}"
-                                                       class="btn btn-danger btn-sm" title="Exportar PDF">
-                                                        <i class="fas fa-file-pdf"></i>
+                                                    <a href="{{ route('adm.relatorios.exportar', $campanha->id) }}" class="btn btn-danger btn-sm" title="Exportar PDF">
+                                                        <i class="bi bi-file-pdf"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -118,9 +114,9 @@
                                     @endforeach
                                 </tbody>
                                 <tfoot>
-                                    <tr class="bg-light">
-                                        <td colspan="5" class="text-right"><strong>Totais:</strong></td>
-                                        <td class="text-success">
+                                    <tr class="table-light">
+                                        <td colspan="5" class="text-end"><strong>Totais:</strong></td>
+                                        <td class="text-success fw-bold">
                                             <strong>R$ {{ number_format($campanhas->sum(function($campanha) {
                                                 return $campanha->doacoes->sum('valor');
                                             }), 2, ',', '.') }}</strong>
@@ -137,7 +133,7 @@
                         </div>
                     @else
                         <div class="alert alert-info text-center">
-                            <i class="fas fa-info-circle"></i>
+                            <i class="bi bi-info-circle me-2"></i>
                             Nenhuma campanha encontrada com os filtros aplicados.
                         </div>
                     @endif
@@ -146,4 +142,4 @@
         </div>
     </div>
 </div>
-
+@endsection

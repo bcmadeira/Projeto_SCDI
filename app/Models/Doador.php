@@ -14,6 +14,18 @@ class Doador extends Authenticatable
     protected $table = 'doadores';
 
     protected $fillable = [
+<<<<<<< HEAD
+        'nome', 
+        'cpf_cnpj', 
+        'telefone', 
+        'email',
+        'tipo_doador', 
+        'endereco', 
+        'cidade',
+        'estado',
+        'cep',
+        'senha'
+=======
         'nome',
         'cpf_cnpj',
         'telefone',
@@ -22,6 +34,7 @@ class Doador extends Authenticatable
         'endereco',
         'cidade',
         'tipo_doador'
+>>>>>>> origin/main
     ];
 
     protected $hidden = [
