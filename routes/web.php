@@ -109,22 +109,11 @@ Route::post('/logout-doador', [DoadorAuthController::class, 'logout'])->name('lo
 // =====================================================================
 // ROTAS QUE NECESSITAM DOADOR LOGADO (auth:doador)
 // =====================================================================
-Route::middleware('auth:doador')->group(function () {
 
-    // Home do doador autenticado
-    Route::get('/doador/home', [HomeDoadorController::class, 'index'])->name('doador.home');
+// Rotas protegidas para instituição
 
-    // Criar campanhas (se o doador/usuário puder criar)
-    Route::get('/campanhas/criar', [CampanhaController::class, 'create'])->name('campanhas.create');
-    Route::post('/campanhas', [CampanhaController::class, 'store'])->name('campanhas.store');
 
-    // Criar Instituição
-    Route::resource('instituicoes', InstituicaoController::class);
 
-    // Doações
-    Route::get('/campanhas/{id}/doar', [DoacaoController::class, 'create'])->name('doacoes.create');
-    Route::post('/doacoes', [DoacaoController::class, 'store'])->name('doacoes.store');
-});
 
 
 // =====================================================================
