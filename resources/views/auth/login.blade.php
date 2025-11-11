@@ -3,6 +3,19 @@
 @section('title', 'Login - SCDI')
 
 @section('content')
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-0 ">
+  <div class="container-fluid ps-4">
+    <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+      <span class="fw-light fs-4 text-dark shadow-sm p-3 mb-3 bg-body rounded hover-shadow">Sistema De Controle De Doações Institucional</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </nav>
+
 <div class="container-center">
     <div class="form-container">
         <!-- Logo e título do sistema -->
